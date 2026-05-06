@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Bella Trattoria - Menu</title>
+    <style>
+        :root {
+            --primary-green: #81c784; 
+            --dark-green: #2e7d32;
+            --bg-color: #f1f8e9; 
+            --card-bg: #ffffff;
+            --text-color: #333333;
+            --price-color: #2e7d32;
+            --font-main: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--card-bg);
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+
+
+        .site-logo {
+            max-width: 120px;
+            height: auto;
+            margin-bottom: 15px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        h1 {
+            color: var(--dark-green);
+            margin: 0 0 15px 0;
+            font-weight: 300;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .lang-toggle {
+            display: inline-flex;
+            background: #e8f5e9;
+            border-radius: 25px;
+            padding: 5px;
+            cursor: pointer;
+            border: 1px solid var(--primary-green);
+        }
+
+        .lang-btn {
+            background: none;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            color: #777;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .lang-btn.active {
+            background-color: var(--primary-green);
+            color: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        /* Container */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Sections */
+        section {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        h2 {
+            color: var(--dark-green);
+            border-bottom: 2px solid var(--primary-green);
+            padding-bottom: 10px;
+            margin-top: 0;
+            text-transform: uppercase;
+            font-size: 1.4rem;
+            text-align: center;
+        }
+
+        /* Menu Items */
+        .menu-item {
+            margin-bottom: 25px;
+            border-bottom: 1px dashed #ddd;
+            padding-bottom: 15px;
+        }
+
+        .menu-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 5px;
+        }
+
+        .item-name {
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: #222;
+        }
+
+        .item-price {
+            font-weight: bold;
+            color: var(--price-color);
+            white-space: nowrap;
+            margin-left: 10px;
+        }
+
+        .item-desc {
+            font-size: 0.95rem;
+            color: #666;
+            margin: 0;
+            font-style: italic;
+        }
+
+        .sub-options {
+            margin-top: 5px;
+            font-size: 0.9rem;
+            color: #555;
+            background: #f9f9f9;
+            padding: 5px 10px;
+            border-radius: 5px;
+            display: inline-block;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: #777;
+            font-size: 0.8rem;
+        }
+
+        /* Animation */
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <img src="labellalogo.jpg" alt="La Bella Trattoria Logo" class="site-logo">
+    <div class="lang-toggle">
+        <button class="lang-btn active" onclick="setLanguage('fi')">SUOMI</button>
+        <button class="lang-btn" onclick="setLanguage('en')">ENGLISH</button>
+    </div>
+</header>
+
+<div class="container" id="menu-container">
+    <!-- Content injected via JavaScript -->
+</div>
+
+<footer>
+    <p>&copy; 2026 La Bella Trattoria. All prices include VAT.</p>
+</footer>
+
+<script>
+    // Data Structure
+    const menuData = {
+        antipasti: {
+            title: { fi: "Antipasti", en: "Antipasti" },
+            items: [
+                { name: { fi: "Burrata con pomodorini", en: "Burrata con pomodorini" }, desc: { fi: "Kermaista burrata-juustoa ja kirsikkatomaatteja", en: "Creamy burrata cheese and cherry tomatoes" }, price: "14 €" },
+                { name: { fi: "Zuppa di pomodoro con aglio", en: "Zuppa di pomodoro con aglio" }, desc: { fi: "Valkosipulinen tomaattikeitto", en: "Garlic tomato soup" }, price: "11 €" },
+                { name: { fi: "Bruschetta caprese", en: "Bruschetta caprese" }, desc: { fi: "Klassinen italialainen alkuruokaleipä tomaatilla, basilikalla ja mozzarellajuustolla", en: "Classic starter bread with tomato, basil and mozzarella" }, price: "11 €" },
+                { name: { fi: "Lumache al burro", en: "Lumache al burro" }, desc: { fi: "Etanoita yrttivoissa", en: "Snails in herb butter" }, price: "12 €" },
+                { name: { fi: "Antipasto all'italiana", en: "Antipasto all'italiana" }, desc: { fi: "Italialainen alkupalalajitelma jaettavaksi", en: "Italian appetizer platter to share" }, price: "25 € / 35 €" }
+            ]
+        },
+        insalate: {
+            title: { fi: "Insalate", en: "Salads" },
+            items: [
+                { name: { fi: "Insalata verde", en: "Insalata verde" }, desc: { fi: "Vihersalaatti vinaigrettekastikkeella", en: "Green salad with vinaigrette dressing" }, price: "15 €" },
+                { name: { fi: "Insalata di pollo", en: "Insalata di pollo" }, desc: { fi: "Kanasalaatti vinaigrettekastikkeella", en: "Chicken salad with vinaigrette dressing" }, price: "20 €" },
+                { 
+                    name: { fi: "Insalata Caesar", en: "Caesar Salad" }, 
+                    desc: { fi: "Klassinen Caesar-salaatti", en: "Classic Caesar salad" }, 
+                    price: "16 € / 22 € / 23 €",
+                    options: { fi: "Naturale / kanalla / jättikatkaravuilla", en: "Natural / with chicken / with shrimp" }
+                },
+                { name: { fi: "Insalata con formaggio di capra", en: "Goat Cheese Salad" }, desc: { fi: "Vuohenjuustosalaatti balsamicokastikkeella ja pestoa", en: "Goat cheese salad with balsamic dressing and pesto" }, price: "23 €" }
+            ]
+        },
+        pizze: {
+            title: { fi: "Pizze", en: "Pizzas" },
+            items: [
+                { name: { fi: "Margherita", en: "Margherita" }, desc: { fi: "Mozzarella fior di latte, parmesaania ja basilikaa", en: "Mozzarella, Parmesan, and basil" }, price: "17 €" },
+                { name: { fi: "Della Nonna", en: "Della Nonna" }, desc: { fi: "Mozzarella, paahdettua paprikaa, munakoisoa, parmesaania ja basilikaa", en: "Bell pepper, eggplant, Parmesan and basil" }, price: "18 €" },
+                { name: { fi: "Rucola", en: "Rucola" }, desc: { fi: "Mozzarella, parmankinkkua, parmesaania ja rucolaa", en: "Parma ham, Parmesan and arugula" }, price: "19 €" },
+                { name: { fi: "La Bella Trattoria", en: "La Bella Trattoria" }, desc: { fi: "Mozzarella, talon makkaraa, herkkusieniä, chiliä, parmesaania ja basilikaa", en: "Mozzarella, house sausage, mushrooms, chili, Parmesan and basil" }, price: "19 €" },
+                { name: { fi: "Calabrese", en: "Calabrese" }, desc: { fi: "Mozzarella, salamia, aurinkokuivattuja tomaatteja, sipulia, parmesaania ja basilikaa", en: "Mozzarella, salami, sun-dried tomatoes, onion, Parmesan and basil" }, price: "19 €" },
+                { name: { fi: "Del pescatore", en: "Del pescatore" }, desc: { fi: "Mozzarella, jättikatkarapuja, mustekalaa, kirsikkatomaattia ja valkosipuliöljyä", en: "Mozzarella, giant prawns, octopus, cherry tomatoes and garlic oil" }, price: "21 €" },
+                { name: { fi: "Nduja", en: "Nduja" }, desc: { fi: "Mozzarella, salamia, ndujaa, sipulia ja oliiveja", en: "Mozzarella, salami, nduja, onion and olives" }, price: "18 €" },
+                { name: { fi: "Bianca", en: "Bianca" }, desc: { fi: "Mozzarella, gorgonzolaa, vuohenjuustoa ja parmesaania", en: "Mozzarella, Gorgonzola, goat cheese and Parmesan" }, price: "18 €" },
+                { name: { fi: "Frutti di mare", en: "Frutti di mare" }, desc: { fi: "Mozzarella, mustekalaa, katkarapuja, simpukoita ja valkosipulia", en: "Octopus, shrimp, mussels and garlic" }, price: "18 €" },
+                { name: { fi: "Carne miste", en: "Carne miste" }, desc: { fi: "Mozzarella, salamia, parmankinkkua ja mortadellaa", en: "Mozzarella, salami, Parma ham and mortadella" }, price: "18 €" },
+                { name: { fi: "Speciale", en: "Speciale" }, desc: { fi: "Mozzarella, naudan ilmakuivattua lihaa, vuohenjuustoa, kirsikkatomaatteja, rucolaa ja parmesaania", en: "Mozzarella, dried beef, goat cheese, cherry tomatoes, arugula and Parmesan" }, price: "19 €" },
+                { name: { fi: "Fantasia", en: "Fantasia" }, desc: { fi: "Mozzarella ja neljä vapaavalintaista täytettä", en: "Mozzarella and four toppings of your choice" }, price: "21 €" }
+            ]
+        },
+        pasta: {
+            title: { fi: "Pasta", en: "Pasta" },
+            items: [
+                { name: { fi: "Lasagne della casa", en: "House Lasagna" }, desc: { fi: "La Bella Trattorian lasagne", en: "La Bella Trattoria's classic lasagna" }, price: "19 €" },
+                { name: { fi: "Pasta alla da silva", en: "Pasta alla da silva" }, desc: { fi: "Gratinoitua uunipastaa salamilla, parmankinkulla, aura- ja parmesaanijuustolla ja ananaksella", en: "Au gratin baked pasta with salami, Parma ham, blue cheese, Parmesan and pineapple" }, price: "19 €" },
+                { name: { fi: "Pasta al forno", en: "Pasta al forno" }, desc: { fi: "Gratinoitua uunipastaa kanalla, herkkusienillä, paprikalla ja parmesaanijuustolla", en: "Au gratin baked pasta with chicken, mushrooms, bell pepper and Parmesan" }, price: "19 €" },
+                { name: { fi: "Linguine alla carbonara", en: "Linguine Carbonara" }, desc: { fi: "Pekonilla, kananmunan keltuaisella, mustapippurilla ja parmesaanijuustolla", en: "With bacon, egg yolk, black pepper and Parmesan cheese" }, price: "20 €" },
+                { name: { fi: "Linguine alla bolognese", en: "Linguine Bolognese" }, desc: { fi: "Perinteinen jauhelihakastike", en: "Traditional meat sauce" }, price: "18 €" },
+                { name: { fi: "Linguine pollo e pesto", en: "Linguine Chicken & Pesto" }, desc: { fi: "Kanaa vihreässä pestokastikkeessa", en: "Chicken in green pesto sauce" }, price: "19 €" },
+                { name: { fi: "Linguine ai gamberoni", en: "Linguine with Giant Prawns" }, desc: { fi: "Jättikatkarapuja, tomaattia, oliivi, chili, valkosipuli ja valkoviinikastike", en: "Giant prawns, tomato, olive, chili, garlic and white wine sauce" }, price: "23 €" },
+                { name: { fi: "Tagliatelle ai funghi porcini", en: "Tagliatelle with Porcini" }, desc: { fi: "Herkkutatteja ja valkoviinikastike", en: "Porcini mushrooms and white wine sauce" }, price: "23 €" },
+                { name: { fi: "Rigatoni Trattoria", en: "Rigatoni Trattoria" }, desc: { fi: "Ndujaa, talon makkaraa, herkkusieniä tomaattikastikkeessa", en: "Nduja, house sausage, mushrooms in tomato sauce" }, price: "21 €" },
+                { name: { fi: "Gnocchi con porcini", en: "Gnocchi with Porcini" }, desc: { fi: "Herkkutatteja, salviaa ja tomaattikastiketta", en: "Porcini mushrooms, sage and tomato sauce" }, price: "23 €" }
+            ]
+        },
+        risotto: {
+            title: { fi: "Risotto", en: "Risotto" },
+            items: [
+                { name: { fi: "Risotto con porcini", en: "Porcini Risotto" }, desc: { fi: "Herkkutattirisotto, valkoviiniä ja parmesaania", en: "Porcini mushroom risotto, white wine, and Parmesan" }, price: "23 €" },
+                { name: { fi: "Risotto dello chef", en: "Chef's Risotto" }, desc: { fi: "Tomaattinen risotto mustekalalla ja jättikatkaravuilla", en: "Tomato risotto with squid and giant prawns" }, price: "23 €" },
+                { name: { fi: "Risotto con pesto rosso", en: "Risotto with Red Pesto" }, desc: { fi: "Kanaa, paprikaa, chiliä, puna pestoa ja parmesaania", en: "Chicken, bell pepper, chili, red pesto and Parmesan" }, price: "23 €" }
+            ]
+        },
+        meat: {
+            title: { fi: "Liha & Kana", en: "Meat & Chicken" },
+            items: [
+                { name: { fi: "Bistecca al pepe", en: "Steak with Pepper" }, desc: { fi: "Naudan ulkofileetä pippurikermakastikkeella", en: "Beef sirloin with pepper cream sauce" }, price: "34 €" },
+                { name: { fi: "Bistecca ai funghi", en: "Steak with Mushrooms" }, desc: { fi: "Naudan ulkofileetä herkkusienikastikkeella", en: "Beef sirloin with mushroom sauce" }, price: "34 €" },
+                { name: { fi: "Pollo al gorgonzola", en: "Chicken Gorgonzola" }, desc: { fi: "Broilerin rintafileetä gorgonzola-kastikkeella", en: "Chicken breast fillet with Gorgonzola sauce" }, price: "28 €" },
+                { name: { fi: "Pollo ai funghi", en: "Chicken with Mushrooms" }, desc: { fi: "Broilerin rintafileetä herkkusienikastikkeella", en: "Chicken breast fillet with mushroom sauce" }, price: "28 €" }
+            ],
+            note: { fi: "Kaikkiin annoksiin voit valita lisukkeeksi talon paahdetut perunat tai polentaa. Kasvikset kuuluvat kaikkiin annoksiin.", en: "All dishes can be served with house roasted potatoes or polenta. Vegetables included." }
+        },
+        fish: {
+            title: { fi: "Kala", en: "Fish" },
+            items: [
+                { name: { fi: "Trota ai gamberi", en: "Salmon & Shrimp" }, desc: { fi: "Lohta ja katkarapuja kermaisella valkoviinikastikkeella", en: "Salmon and shrimp in a creamy white wine sauce" }, price: "29 €" },
+                { name: { fi: "Salmone con olive e capperi", en: "Salmon with Olives" }, desc: { fi: "Lohta, kapriksia, sitruuna ja oliiviöljyä", en: "Salmon with olives, capers, lemon and olive oil" }, price: "29 €" },
+                { name: { fi: "Gamberoni infernale", en: "Gamberoni Infernale" }, desc: { fi: "Uunissa haudutettua mustekalaa, simpukoita ja jättikatkarapuja tulisessa tomaattivalkoviini-kastikkeessa", en: "Braised octopus, mussels, and giant prawns in a spicy tomato-white wine sauce" }, price: "34 €", options: { fi: "* Ei lisuketta", en: "* No side dish" } }
+            ],
+            note: { fi: "Kaikkiin annoksiin voit valita lisukkeeksi talon paahdetut perunat tai polentaa. Kasvikset kuuluvat kaikkiin annoksiin.", en: "All dishes can be served with house roasted potatoes or polenta. Vegetables included." }
+        },
+        desserts: {
+            title: { fi: "Jälkiruoat", en: "Desserts" },
+            items: [
+                { name: { fi: "Affogato", en: "Affogato" }, desc: { fi: "Espressoa ja vaniljajäätelöä", en: "Espresso and vanilla ice cream" }, price: "9 €" },
+                { name: { fi: "Gelato", en: "Gelato" }, desc: { fi: "Vaniljajäätelöä ja valitsemasi kastike (Suklaa tai Marjakastike)", en: "Vanilla ice cream with sauce of your choice (Chocolate or Berry)" }, price: "8 €" },
+                { name: { fi: "Tiramisu", en: "Tiramisu" }, desc: { fi: "Klassikko Tiramisu", en: "Classic Tiramisu" }, price: "11 €" },
+                { name: { fi: "Pannacotta ai frutti di bosco", en: "Pannacotta" }, desc: { fi: "Vaniljainen pannacotta marjakastikkeella", en: "Vanilla Pannacotta with berry sauce" }, price: "8 €" }
+            ]
+        },
+        coffee: {
+            title: { fi: "Kahvi", en: "Coffee" },
+            items: [
+                { name: { fi: "Espresso", en: "Espresso" }, price: "3,40 €" },
+                { name: { fi: "Espresso doppio", en: "Espresso doppio" }, price: "4,50 €" },
+                { name: { fi: "Espresso macchiato", en: "Espresso macchiato" }, price: "4,50 €" },
+                { name: { fi: "Caffé latte", en: "Caffé latte" }, price: "4,90 €" },
+                { name: { fi: "Cappuccino", en: "Cappuccino" }, price: "4,50 €" },
+                { name: { fi: "Americano", en: "Americano" }, price: "3,90 €" },
+                { name: { fi: "Irish coffee", en: "Irish coffee" }, price: "11,90 €" },
+                { name: { fi: "Espresso amaretto", en: "Espresso amaretto" }, price: "11,90 €" }
+            ]
+        },
+        red_wine: {
+            title: { fi: "Punaviinit", en: "Red Wines" },
+            items: [
+                { 
+                    name: { fi: "Da vero rosso (talon viini)", en: "House Red Wine" }, 
+                    price: "12cl 8,90€ / 16cl 9,90€ / 24cl 10,90€ / Plo 35,50€" 
+                },
+                { 
+                    name: { fi: "Casalforte Valpolicella Ripasso", en: "Casalforte Valpolicella Ripasso" }, 
+                    price: "12cl 8,90€ / 16cl 9,90€ / 24cl 10,90€ / Plo 35,50€" 
+                },
+                { 
+                    name: { fi: "Torre Mora Scalunera Etna Rosso", en: "Torre Mora Scalunera Etna Rosso" }, 
+                    price: "Plo 49,90€" 
+                }
+            ]
+        },
+        white_wine: {
+            title: { fi: "Valkoviinit", en: "White Wines" },
+            items: [
+                { 
+                    name: { fi: "Da vero bianco (talon viini)", en: "House White Wine" }, 
+                    price: "12cl 8,90€ / 16cl 9,90€ / 24cl 10,90€ / Plo 35,50€" 
+                },
+                { 
+                    name: { fi: "Casalforte Pinot Grigio", en: "Casalforte Pinot Grigio" }, 
+                    price: "12cl 9,90€ / 16cl 10,90€ / 24cl 11,90€ / Plo 39,90€" 
+                },
+                { 
+                    name: { fi: "Torre Mora Scalunera Etna Bianco", en: "Torre Mora Scalunera Etna Bianco" }, 
+                    price: "Plo 49,90€" 
+                }
+            ]
+        },
+        rosé_sparkling: {
+            title: { fi: "Kuohuviinit & Rosé", en: "Sparkling & Rosé" },
+            items: [
+                { 
+                    name: { fi: "Vignana Extra Dry Prosecco", en: "Vignana Extra Dry Prosecco" }, 
+                    price: "Piccolo 20cl 13,90€ / Plo 38,90€" 
+                },
+                { 
+                    name: { fi: "Costa Toscana IGT (luomu)", en: "Costa Toscana IGT (Organic)" }, 
+                    price: "12cl 8,90€ / 16cl 9,90€ / 24cl 10,90€ / Plo 35,50€" 
+                }
+            ]
+        },
+        drinks: {
+            title: { fi: "Virvokkeet", en: "Soft Drinks" },
+            items: [
+                { name: { fi: "Coca-Cola, Coca-Cola Zero, Fanta", en: "Coca-Cola, Coca-Cola Zero, Fanta" }, price: "0,25l 3,90€ / 0,50l 4,90€" },
+                { name: { fi: "San Pellegrino limonata", en: "San Pellegrino Lemonade" }, price: "0,33l 4,90€" },
+                { name: { fi: "Appelsiini-/Omenamehu", en: "Orange/Apple Juice" }, price: "0,33l 3,90€" },
+                { name: { fi: "San Pellegrino, mineraalivesi", en: "San Pellegrino, mineral water" }, price: "0,50l 4,90€" },
+                { name: { fi: "Peroni 0%", en: "Peroni 0%" }, price: "0,33l 5,90€" },
+                { name: { fi: "Vesi (ainoana juomana)", en: "Water (standalone charge)" }, price: "1,00€" }
+            ]
+        },
+        beers: {
+            title: { fi: "Oluet", en: "Beers"},
+            items: [
+                { name: { fi: "Peroni Nastro Azzurro", en: "Peroni Nastro Azzurro" }, price: "0,33l 8,90€" },
+                { name: { fi: "Duckstein Weizen", en: "Duckstein Weizen" }, price: "0,50l 10,90€" },
+                { name: { fi: "Budweiser Budvar", en: "Budweiser Budvar" }, price: "0,50l 10,90€" },
+                { name: { fi: "Birra Moretti", en: "Birra Moretti" }, price: "0,33l 8,90€" },
+            ]
+        },
+        draftBeers: {
+            title: { fi: "Hanaoluet", en: "Draft Beers"},
+            items: [
+                { name: { fi: "Karhu III", en: "Karhu III" }, price: "0,4l 8,70€" },
+                { name: { fi: "Brooklyn Lager", en: "Brooklyn Lager" }, price: "0,4l 8,90€" },
+            ]
+        },
+        
+        aperitifs: {
+            title: { fi: "Aperitiivit", en: "Aperitifs" },
+            items: [
+                { name: { fi: "Aperol Spritz", en: "Aperol Spritz" }, price: "13,90 €" },
+                { name: { fi: "Aperol Limoncello", en: "Aperol Limoncello" }, price: "13,90 €" },
+                { name: { fi: "Bitter Campari", en: "Bitter Campari" }, price: "9,90 €" },
+                { name: { fi: "Gin Tonic", en: "Gin Tonic" }, price: "10,90 €" }
+            ]
+        },
+        digestifs: {
+            title: { fi: "Digestiivit", en: "Digestifs" },
+            items: [
+                { name: { fi: "Sambuca Vaccari", en: "Sambuca Vaccari" }, price: "10,90 €" },
+                { name: { fi: "Amaro Averna", en: "Amaro Averna" }, price: "10,90 €" },
+                { name: { fi: "Fernet Branca", en: "Fernet Branca" }, price: "10,90 €" },
+                { name: { fi: "Jägermeister", en: "Jägermeister" }, price: "9,90 €" }
+            ]
+        },
+        liqueurs: {
+            title: { fi: "Liköörit", en: "Liqueurs" },
+            items: [
+                { name: { fi: "Limoncello", en: "Limoncello" }, price: "10,90 €" },
+                { name: { fi: "Amaretto", en: "Amaretto" }, price: "9,90 €" }
+            ]
+        },
+        spirits: {
+            title: { fi: "Väkevät", en: "Spirits" },
+            items: [
+                { name: { fi: "Grappa di Amarone Sartori", en: "Grappa di Amarone Sartori" }, price: "11,90 €" },
+                { name: { fi: "Monopol Cognac VSOP", en: "Monopol Cognac VSOP" }, price: "11,90 €" },
+                { name: { fi: "Jameson Irish Whiskey", en: "Jameson Irish Whiskey" }, price: "11,90 €" }
+            ]
+        },
+    };
+
+    let currentLang = 'fi';
+
+    function renderMenu() {
+        const container = document.getElementById('menu-container');
+        container.innerHTML = '';
+        container.classList.remove('fade-in');
+        void container.offsetWidth; // trigger reflow
+        container.classList.add('fade-in');
+
+        for (const [key, section] of Object.entries(menuData)) {
+            const sectionEl = document.createElement('section');
+            
+            const titleEl = document.createElement('h2');
+            titleEl.textContent = section.title[currentLang];
+            sectionEl.appendChild(titleEl);
+
+            if (section.items) {
+                section.items.forEach(item => {
+                    const itemEl = document.createElement('div');
+                    itemEl.className = 'menu-item';
+
+                    const headerEl = document.createElement('div');
+                    headerEl.className = 'item-header';
+
+                    const nameEl = document.createElement('span');
+                    nameEl.className = 'item-name';
+                    nameEl.textContent = item.name[currentLang] || item.name['fi']; // Fallback
+                    headerEl.appendChild(nameEl);
+
+                    if (item.price) {
+                        const priceEl = document.createElement('span');
+                        priceEl.className = 'item-price';
+                        priceEl.textContent = item.price;
+                        headerEl.appendChild(priceEl);
+                    }
+
+                    itemEl.appendChild(headerEl);
+
+                    if (item.desc) {
+                        const descEl = document.createElement('p');
+                        descEl.className = 'item-desc';
+                        descEl.textContent = item.desc[currentLang];
+                        itemEl.appendChild(descEl);
+                    }
+
+                    if (item.options) {
+                        const optEl = document.createElement('div');
+                        optEl.className = 'sub-options';
+                        optEl.textContent = item.options[currentLang];
+                        itemEl.appendChild(optEl);
+                    }
+
+                    sectionEl.appendChild(itemEl);
+                });
+            }
+
+            if (section.note) {
+                const noteEl = document.createElement('p');
+                noteEl.style.textAlign = 'center';
+                noteEl.style.fontStyle = 'italic';
+                noteEl.style.fontSize = '0.9rem';
+                noteEl.style.color = '#777';
+                noteEl.textContent = section.note[currentLang];
+                sectionEl.appendChild(noteEl);
+            }
+
+            container.appendChild(sectionEl);
+        }
+    }
+
+    function setLanguage(lang) {
+        currentLang = lang;
+        // Update buttons
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.classList.remove('active');
+            if (btn.textContent.toLowerCase().includes(lang === 'fi' ? 'suomi' : 'english')) {
+                btn.classList.add('active');
+            }
+        });
+        renderMenu();
+    }
+
+    // Initial Render
+    renderMenu();
+</script>
+
+</body>
+</html>
