@@ -170,7 +170,26 @@
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
+            
         }
+        @media (max-width: 600px) {
+        .item-header {
+            flex-direction: column; /* Stacks name and price vertically */
+            align-items: flex-start; /* Aligns them to the left */
+        }
+
+    .item-price {
+        margin-left: 0; /* Removes the side gap */
+        margin-top: 4px; /* Adds a tiny gap between name and price */
+        font-size: 0.95rem; /* Makes price slightly smaller */
+        white-space: normal; /* Allows the text to wrap to multiple lines */
+        line-height: 1.4; /* Improves readability for multi-line prices */
+    }
+    
+    .item-name {
+        width: 100%; /* Ensures name takes full width */
+    }
+}
     </style>
 </head>
 <body>
